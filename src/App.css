@@ -55,6 +55,7 @@ html {
 
 :root {
   --main-text: #102a42;
+  --main-text-medium: #2e6292;
   --main-text-light: #4f7fac;
   --main-text-white: #e5e5e5;
   --main-bg: rgb(222, 222, 222);
@@ -99,4 +100,16 @@ html {
 .unshown {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.btn,
+.btn:hover,
+.btn:active {
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: var(--main-text-medium);
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
 }

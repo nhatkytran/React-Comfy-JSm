@@ -26,6 +26,7 @@ export const AboutStyles = styled.div`
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
+        border-radius: 2px;
         box-shadow: 3px 3px 6px var(--main-text-white),
           -3px -3px 6px var(--main-text-white);
 
