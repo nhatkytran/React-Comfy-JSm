@@ -1,12 +1,12 @@
 import { HomeStyles } from "./styledComponents";
-import { Hero } from "../components";
+import { Hero, Services, Contact } from "../components";
 
 function Home() {
   return (
-    <HomeStyles>
-      <div className="home">
-        <Hero />
-      </div>
+    <HomeStyles className="home">
+      <Hero />
+      <Services />
+      <Contact />
     </HomeStyles>
   );
 }

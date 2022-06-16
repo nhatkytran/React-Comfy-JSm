@@ -46,7 +46,7 @@ function About() {
               <div></div>
             </div>
             <div className="about-content-story">
-              <h2>Our Story</h2>
+              <h2 className="underline">Our Story</h2>
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
                 accusantium sapiente tempora sed dolore esse deserunt eaque

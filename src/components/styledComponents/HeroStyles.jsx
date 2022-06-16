@@ -38,17 +38,6 @@ export const HeroStyles = styled.div`
         position: relative;
 
         ::before {
-          content: "";
-          width: 50%;
-          height: 6px;
-          background: linear-gradient(
-            to right,
-            var(--main-text),
-            var(--main-text-light)
-          );
-          border-radius: 6px;
-
-          position: absolute;
           bottom: 0;
           left: 0;
         }
@@ -95,7 +84,6 @@ export const HeroStyles = styled.div`
           height: calc(60%);
           background-color: var(--main-text-light);
           border-top-left-radius: 6px;
-
           position: absolute;
           left: -30px;
           bottom: 0;

@@ -54,6 +54,7 @@ html {
 }
 
 :root {
+  --main-text-dark: #04182a;
   --main-text: #102a42;
   --main-text-medium: #2e6292;
   --main-text-light: #4f7fac;
@@ -100,6 +101,19 @@ html {
 .unshown {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.underline::before {
+  content: "";
+  width: 50%;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--main-text),
+    var(--main-text-light)
+  );
+  border-radius: 6px;
+  position: absolute;
 }
 
 .btn,

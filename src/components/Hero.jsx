@@ -6,7 +6,7 @@ function Hero() {
       <div className="app">
         <div className="hero">
           <div className="hero-content">
-            <h2>Design Your Comfort Zone</h2>
+            <h2 className="underline">Design Your Comfort Zone</h2>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
               at sed omnis corporis doloremque possimus velit! Repudiandae nisi
