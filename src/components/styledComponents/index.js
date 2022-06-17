@@ -6,6 +6,7 @@ import {
 } from "./CartButtonsStyles";
 import { SidebarStyles } from "./SidebarStyles";
 import { HeroStyles } from "./HeroStyles";
+import { FeaturedProductsStyles } from "./FeaturedProductsStyles";
 import { ServicesStyles } from "./ServicesStyles";
 import { ContactStyles } from "./ContactStyles";
 import { PageHeroStyles } from "./PageHeroStyles";
@@ -18,6 +19,7 @@ export {
   CartButtonsSidebarStyles,
   SidebarStyles,
   HeroStyles,
+  FeaturedProductsStyles,
   ServicesStyles,
   ContactStyles,
   PageHeroStyles,

@@ -5,7 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import logo from "../imgs/logo-black-comfy.svg";
 import { links } from "../utils/constants";
 
-import { useStructureContext } from "../context/StructureContext";
+import { useStructureContext } from "../context";
 import { SidebarStyles } from "./styledComponents";
 import { ModalOverlay } from "./utils";
 import CartButtons from "./CartButtons";

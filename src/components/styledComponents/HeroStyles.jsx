@@ -3,6 +3,8 @@ import mainGallery from "../../imgs/nice-desk.jpeg";
 import subGallery from "../../imgs/hero.jpeg";
 
 export const HeroStyles = styled.div`
+  background-color: #dceeff;
+
   .hero {
     display: flex;
     align-items: center;

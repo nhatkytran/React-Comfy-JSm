@@ -4,7 +4,7 @@ import { VscThreeBars } from "react-icons/vsc";
 import logo from "../imgs/logo-black-comfy.svg";
 import { links } from "../utils/constants";
 
-import { useStructureContext } from "../context/StructureContext";
+import { useStructureContext } from "../context";
 import { NavbarStyles } from "./styledComponents";
 import CartButtons from "./CartButtons";
 

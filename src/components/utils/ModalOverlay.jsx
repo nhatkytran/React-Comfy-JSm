@@ -1,4 +1,4 @@
-import { useStructureContext } from "../../context/StructureContext";
+import { useStructureContext } from "../../context";
 import { ModalOverlayStyles } from "../styledComponents";
 
 function ModalOverlay() {

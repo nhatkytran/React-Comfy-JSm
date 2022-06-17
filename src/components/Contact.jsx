@@ -1,19 +1,6 @@
-import { useState } from "react";
 import { ContactStyles } from "./styledComponents";
 
 function Contact() {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("Enter your email");
-
-  function handleemail(event) {
-    setEmail(event.target.value);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(email);
-  }
-
   return (
     <ContactStyles className="center-flex-display">
       <div className="app">
@@ -24,13 +11,16 @@ function Contact() {
             ex officiis. Unde, odit inventore. Minima saepe porro natus?
             Aliquam, praesentium.
           </p>
-          <p className="message">{message}</p>
-          <form onSubmit={handleSubmit}>
+          <p className="message">Enter your email</p>
+          <form
+            action="https://formsubmit.co/dc2fc18512c7e45c708ba7b6d3979958"
+            method="POST"
+          >
             <input
-              type="text"
-              placeholder="email@email.com"
-              value={email}
-              onChange={handleemail}
+              type="email"
+              name="email"
+              placeholder="loveyour@gmail.com"
+              required
             />
             <button className="btn btn-email">SUBMIT</button>
           </form>
