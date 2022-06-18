@@ -6,7 +6,11 @@ import {
   useReducer,
 } from "react";
 import axios from "axios";
-import { productsReducer, PRODUCTS_ACTIONS } from "../reducer";
+import {
+  productsReducer,
+  PRODUCTS_ACTIONS,
+  SINGLE_PRODUCT_ACTIONS,
+} from "../reducer";
 
 const ProductsContext = createContext();
 
@@ -21,6 +25,9 @@ const initState = {
   productsError: { show: false, message: "" },
   products: [],
   featuredProducts: [],
+  singleProductLoading: false,
+  singleProductError: { show: false, message: "" },
+  singleProduct: {},
 };
 
 function ProductsProvider({ children }) {
@@ -38,7 +45,7 @@ function ProductsProvider({ children }) {
       dispatch(PRODUCTS_ACTIONS.setProducts(products));
       dispatch(PRODUCTS_ACTIONS.setFeaturedProducts(featuredProducts));
     } catch (error) {
-      console.error("Something went wrong!");
+      console.error("[Products]: Something went wrong!");
       console.log(error.message);
       dispatch(
         PRODUCTS_ACTIONS.setError({ show: true, message: error.message })
@@ -48,12 +55,34 @@ function ProductsProvider({ children }) {
     }
   }, []);
 
+  const fetchSingleProduct = useCallback(async (url) => {
+    try {
+      dispatch(SINGLE_PRODUCT_ACTIONS.setLoading(true));
+      dispatch(SINGLE_PRODUCT_ACTIONS.setError({ show: false, message: "" }));
+
+      const response = await axios.get(url);
+      const { data: singleProduct } = response;
+
+      dispatch(SINGLE_PRODUCT_ACTIONS.setSingleProduct(singleProduct));
+    } catch (error) {
+      console.error("[Single Product]: Something went wrong!");
+      console.log(error.message);
+      dispatch(
+        SINGLE_PRODUCT_ACTIONS.setError({ show: true, message: error.message })
+      );
+    } finally {
+      dispatch(SINGLE_PRODUCT_ACTIONS.setLoading(false));
+    }
+  }, []);
+
   useEffect(() => {
     fetchFeaturedProducts(`${rootURL}/react-store-products`);
   }, [fetchFeaturedProducts]);
 
   const value = {
+    rootURL,
     ...state,
+    fetchSingleProduct,
   };
 
   return (

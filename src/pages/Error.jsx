@@ -18,7 +18,7 @@ function Error() {
 
   return (
     <ErrorStyles
-      className="error"
+      className="error center-flex-display"
       style={{
         width: "100%",
         minHeight: height,

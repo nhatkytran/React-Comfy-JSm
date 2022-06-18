@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import PageHero from "../components/PageHero";
 import { AboutStyles } from "./styledComponents";
+import { PageHero } from "../components";
 
 function About() {
   const [height, setHeight] = useState("660px");
@@ -35,7 +35,7 @@ function About() {
         backgroundColor: "var(--main-bg)",
       }}
     >
-      <PageHero title="About" />
+      <PageHero title="about" />
       <AboutStyles
         className="about center-flex-display"
         style={{ width: "100%", minHeight: height }}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { CheckoutStyles } from "./styledComponents";
-import PageHero from "../components/PageHero";
+import { PageHero } from "../components";
 
 function Checkout() {
   const [height, setHeight] = useState("660px");
@@ -35,7 +35,7 @@ function Checkout() {
         backgroundColor: "var(--main-bg)",
       }}
     >
-      <PageHero title="Checkout" />
+      <PageHero title="checkout" />
       <CheckoutStyles
         className="checkout"
         style={{ width: "100%", minHeight: height }}
