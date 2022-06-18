@@ -26,6 +26,11 @@ export const SingleProductStyles = styled.div`
       width: 100%;
       min-height: 640px;
 
+      @media screen and (max-width: 1100px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
       &-right {
         flex: 1;
         width: 100%;
@@ -39,6 +44,10 @@ export const SingleProductStyles = styled.div`
 
         h2 {
           font-size: 32px;
+
+          @media screen and (max-width: 500px) {
+            font-size: 26px;
+          }
         }
 
         .price {

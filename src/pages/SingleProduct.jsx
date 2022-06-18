@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import loader from "../imgs/loader.svg";
+import upperFirstLetter from "../utils/upperFirstLetter";
+import priceFormatter from "../utils/priceFormatter";
 
+import { handleCancelToken } from "../axios/authFetch";
 import { useProductsContext } from "../context";
 import { SingleProductStyles } from "./styledComponents";
 import { PageHero } from "../components";
@@ -12,14 +15,12 @@ function SingleProduct() {
   const navigate = useNavigate();
   const [height, setHeight] = useState("660px");
   const {
-    rootURL,
     singleProductLoading,
     singleProductError,
     singleProduct,
     fetchSingleProduct,
   } = useProductsContext();
-
-  console.log(singleProduct);
+  const { name, price, description, stock, id: sku, company } = singleProduct;
 
   useEffect(() => {
     const navbarRect = document
@@ -41,9 +42,9 @@ function SingleProduct() {
   }, []);
 
   useEffect(() => {
-    fetchSingleProduct(
-      `${rootURL}/react-store-single-product?id=recNZ0koOqEmilmoz`
-    );
+    fetchSingleProduct(`/react-store-single-product?id=recNZ0koOqEmilmoz`);
+
+    return () => handleCancelToken();
   }, [fetchSingleProduct]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ function SingleProduct() {
     }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [singleProductError]);
+  }, [singleProductError, navigate]);
 
   if (singleProductLoading)
     return (
@@ -80,7 +81,7 @@ function SingleProduct() {
 
   return (
     <SingleProductStyles style={{ width: "100%", minHeight: height }}>
-      <PageHero title="single-product" isSingleProduct />
+      <PageHero isSingleProduct />
       <div className="app">
         <div className="single-product">
           <div className="btn-single-product-container">
@@ -89,31 +90,26 @@ function SingleProduct() {
           <div className="single-product-main">
             <Images />
             <div className="single-product-main-right">
-              <h2>Entertainment Center</h2>
+              <h2>{upperFirstLetter(name)}</h2>
               <Stars />
-              <div className="price">599</div>
-              <p>
-                Cloud bread VHS hell of banjo bicycle rights jianbing umami
-                mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr
-                dreamcatcher waistcoat, authentic chillwave trust fund. Viral
-                typewriter fingerstache pinterest pork belly narwhal. Schlitz
-                venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki
-                trust fund hashtag kinfolk microdosing gochujang live-edge
-              </p>
+              <div className="price">{priceFormatter(price)}</div>
+              <p>{description}</p>
               <div>
                 <span style={{ fontWeight: "bold" }}>Available:</span>
-                <span> In Stock</span>
+                <span>{stock > 0 ? " In Stock" : "Out Of Stock"}</span>
               </div>
               <div>
                 <span style={{ fontWeight: "bold" }}>SKU:</span>
-                <span> RecNZ0koOqEmilmoz</span>
+                <span>{` ${sku}`}</span>
               </div>
               <div>
                 <span style={{ fontWeight: "bold" }}>Brand:</span>
-                <span> Caressa</span>
+                <span
+                  style={{ textTransform: "uppercase" }}
+                >{` ${company}`}</span>
               </div>
               <hr />
-              <AddToCarts />
+              {stock > 0 && <AddToCarts />}
             </div>
           </div>
         </div>

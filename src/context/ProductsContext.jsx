@@ -5,16 +5,14 @@ import {
   useEffect,
   useReducer,
 } from "react";
-import axios from "axios";
 import {
   productsReducer,
   PRODUCTS_ACTIONS,
   SINGLE_PRODUCT_ACTIONS,
 } from "../reducer";
+import authFetch, { handleCancelToken } from "../axios/authFetch";
 
 const ProductsContext = createContext();
-
-const rootURL = "https://course-api.com";
 
 function useProductsContext() {
   return useContext(ProductsContext);
@@ -33,12 +31,12 @@ const initState = {
 function ProductsProvider({ children }) {
   const [state, dispatch] = useReducer(productsReducer, initState);
 
-  const fetchFeaturedProducts = useCallback(async function (url) {
+  const fetchFeaturedProducts = useCallback(async function (urlSource) {
     try {
       dispatch(PRODUCTS_ACTIONS.setLoading(true));
       dispatch(PRODUCTS_ACTIONS.setError({ show: false, message: "" }));
 
-      const response = await axios.get(url);
+      const response = await authFetch(urlSource);
       const { data: products } = response;
       const featuredProducts = products.filter((product) => product.featured);
 
@@ -55,12 +53,12 @@ function ProductsProvider({ children }) {
     }
   }, []);
 
-  const fetchSingleProduct = useCallback(async (url) => {
+  const fetchSingleProduct = useCallback(async (urlSource) => {
     try {
       dispatch(SINGLE_PRODUCT_ACTIONS.setLoading(true));
       dispatch(SINGLE_PRODUCT_ACTIONS.setError({ show: false, message: "" }));
 
-      const response = await axios.get(url);
+      const response = await authFetch(urlSource);
       const { data: singleProduct } = response;
 
       dispatch(SINGLE_PRODUCT_ACTIONS.setSingleProduct(singleProduct));
@@ -76,11 +74,12 @@ function ProductsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    fetchFeaturedProducts(`${rootURL}/react-store-products`);
+    fetchFeaturedProducts(`react-store-products`);
+
+    return () => handleCancelToken();
   }, [fetchFeaturedProducts]);
 
   const value = {
-    rootURL,
     ...state,
     fetchSingleProduct,
   };

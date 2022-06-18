@@ -1,12 +1,15 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import upperFirstLetter from "../utils/upperFirstLetter";
 
 import { PageHeroStyles } from "./styledComponents";
+import { useProductsContext } from "../context";
 
 function PageHero({ title, isSingleProduct }) {
-  const { id } = useParams();
+  const { singleProduct } = useProductsContext();
+
+  if (isSingleProduct) title = singleProduct?.name;
 
   const pageHeroNormal = (
     <React.Fragment>
@@ -29,7 +32,7 @@ function PageHero({ title, isSingleProduct }) {
       <Link to="/products">Products</Link>
       <span>/</span>
       <Link
-        to={`/products/${id}`}
+        to={`/products/${singleProduct?.id}`}
         style={{
           color: "#92caff",
         }}

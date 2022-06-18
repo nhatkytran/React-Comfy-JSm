@@ -13,6 +13,10 @@ export const PageHeroStyles = styled.div`
   );
   font-size: 20px;
 
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
+
   .page-hero-content {
     text-align: start;
     padding-left: 40px;
