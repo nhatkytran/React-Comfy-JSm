@@ -13,7 +13,7 @@ import { Images, Stars, AddToCarts } from "./SingleProductComps";
 
 function SingleProduct() {
   const navigate = useNavigate();
-  const [height, setHeight] = useState("660px");
+  const [height, setHeight] = useState("100vh");
   const {
     singleProductLoading,
     singleProductError,

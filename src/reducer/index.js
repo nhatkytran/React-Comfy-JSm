@@ -8,6 +8,7 @@ import productsReducer, {
   SINGLE_PRODUCT_TYPES,
   SINGLE_PRODUCT_ACTIONS,
 } from "./ProductsReducer";
+import filterReducer, { FILTER_TYPES, FILTER_ACTIONS } from "./FilterReducer";
 
 export { structureReducer, STRUCTURE_TYPES, STRUCTURE_ACTIONS };
 export {
@@ -17,3 +18,4 @@ export {
   SINGLE_PRODUCT_TYPES,
   SINGLE_PRODUCT_ACTIONS,
 };
+export { filterReducer, FILTER_TYPES, FILTER_ACTIONS };
