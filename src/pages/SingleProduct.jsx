@@ -96,7 +96,9 @@ function SingleProduct() {
               <p>{description}</p>
               <div>
                 <span style={{ fontWeight: "bold" }}>Available:</span>
-                <span>{stock > 0 ? " In Stock" : "Out Of Stock"}</span>
+                <span>
+                  {stock > 0 ? `In Stock (${stock})` : "Out Of Stock"}
+                </span>
               </div>
               <div>
                 <span style={{ fontWeight: "bold" }}>SKU:</span>

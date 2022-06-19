@@ -4,6 +4,8 @@ import { AboutStyles } from "./AboutStyles";
 import { CheckoutStyles } from "./CheckoutStyles";
 import { ErrorStyles } from "./ErrorStyles";
 import { ImagesStyles } from "./ImagesStyles";
+import { StarsStyles } from "./StarsStyles";
+import { AddToCartStyles } from "./AddToCartStyles";
 
 export {
   HomeStyles,
@@ -12,4 +14,6 @@ export {
   CheckoutStyles,
   ErrorStyles,
   ImagesStyles,
+  StarsStyles,
+  AddToCartStyles,
 };

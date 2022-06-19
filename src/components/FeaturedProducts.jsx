@@ -60,7 +60,9 @@ function FeaturedProducts() {
               );
             })}
           </div>
-          <button className="btn btn-all-products">ALL PRODUCTS</button>
+          <Link to="/products" className="btn btn-all-products">
+            ALL PRODUCTS
+          </Link>
         </div>
       </div>
     </FeaturedProductsStyles>
