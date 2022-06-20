@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductsStyles } from "./styledComponents";
 import { PageHero } from "../components";
-import { Filter } from "./ProductsComponent";
-import { Sort } from "./ProductsComponent";
+import { Filter, Sort, ProductsList } from "./ProductsComponent";
 
 function Products() {
   const [height, setHeight] = useState("100vh");
@@ -34,6 +33,7 @@ function Products() {
           <Filter />
           <div>
             <Sort />
+            <ProductsList />
           </div>
         </div>
       </div>

@@ -7,6 +7,15 @@ export const ProductsStyles = styled.div`
     gap: 30px;
 
     width: 100%;
+    color: var(--main-text);
     padding: 40px 20px;
+
+    @media screen and (max-width: 768px) {
+      gap: 15px;
+    }
+
+    @media screen and (max-width: 668px) {
+      grid-template-columns: 1fr;
+    }
   }
 `;

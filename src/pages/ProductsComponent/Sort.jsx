@@ -3,6 +3,8 @@ import { IoGrid } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 function Sort() {
+  function handlePrice() {}
+
   return (
     <SortStyles>
       <div className="views">
@@ -19,8 +21,15 @@ function Sort() {
       </div>
       <div className="sort">
         <span>Sort By</span>
-        <select className="sort-select" name="" id="">
-          <option value="">Name (A - Z)</option>
+        <select
+          className="sort-select"
+          value="price-lowest"
+          onChange={handlePrice}
+        >
+          <option value="price-lowest">Price (Lowest)</option>
+          <option value="price-highest">Price (Highest)</option>
+          <option value="name-a">Name (A - Z)</option>
+          <option value="name-z">Name (Z - A)</option>
         </select>
       </div>
     </SortStyles>
