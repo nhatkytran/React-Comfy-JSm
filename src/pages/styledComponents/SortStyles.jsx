@@ -14,12 +14,24 @@ export const SortStyles = styled.div`
     display: flex;
     align-items: center;
 
-    span {
+    .view-btn {
       margin-right: 5px;
       padding: 4px;
       border-radius: 2px;
       border: 1px solid var(--main-text);
       cursor: pointer;
+
+      svg {
+        fill: var(--main-text);
+      }
+
+      &.active {
+        background-color: var(--main-text);
+
+        svg {
+          fill: #fff;
+        }
+      }
     }
 
     .found {

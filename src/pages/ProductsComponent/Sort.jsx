@@ -1,20 +1,28 @@
 import { SortStyles } from "../styledComponents";
 import { IoGrid } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useFilterContext } from "../../context";
 
 function Sort() {
-  function handlePrice() {}
+  const { filteredProducts, gridView, handleView, handleSort } =
+    useFilterContext();
 
   return (
     <SortStyles>
       <div className="views">
-        <span className="center-flex-display">
+        <span
+          className={`view-btn ${gridView ? "active" : ""} center-flex-display`}
+          onClick={handleView.bind(null, true)}
+        >
           <IoGrid />
         </span>
-        <span className="center-flex-display">
+        <span
+          className={`view-btn ${gridView ? "" : "active"} center-flex-display`}
+          onClick={handleView.bind(null, false)}
+        >
           <GiHamburgerMenu />
         </span>
-        <p className="found">23 Products Found</p>
+        <p className="found">{filteredProducts.length} Products Found</p>
       </div>
       <div className="bar">
         <hr />
@@ -23,8 +31,7 @@ function Sort() {
         <span>Sort By</span>
         <select
           className="sort-select"
-          value="price-lowest"
-          onChange={handlePrice}
+          onChange={(event) => handleSort(event.target.value)}
         >
           <option value="price-lowest">Price (Lowest)</option>
           <option value="price-highest">Price (Highest)</option>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import desk from "../../imgs/nice-desk.jpeg";
 
 export const ProductsListStyles = styled.div`
   display: grid;
@@ -97,7 +96,6 @@ export const ProductsListStyles = styled.div`
       display: block;
       width: 300px;
       height: 200px;
-      background-image: url(${desk});
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;

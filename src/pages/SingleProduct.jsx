@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import loader from "../imgs/loader.svg";
 import upperFirstLetter from "../utils/upperFirstLetter";
@@ -12,6 +12,7 @@ import { PageHero } from "../components";
 import { Images, Stars, AddToCarts } from "./SingleProductComps";
 
 function SingleProduct() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [height, setHeight] = useState("100vh");
   const {
@@ -42,10 +43,10 @@ function SingleProduct() {
   }, []);
 
   useEffect(() => {
-    fetchSingleProduct(`/react-store-single-product?id=recNZ0koOqEmilmoz`);
+    fetchSingleProduct(`/react-store-single-product?id=${id}`);
 
     return () => handleCancelToken();
-  }, [fetchSingleProduct]);
+  }, [fetchSingleProduct, id]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
