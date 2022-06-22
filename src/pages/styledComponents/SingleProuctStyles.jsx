@@ -10,6 +10,7 @@ export const SingleProductStyles = styled.div`
     }
 
     .btn-single-product {
+      display: inline-block;
       margin-bottom: 40px;
       transition: all linear 0.1s;
 

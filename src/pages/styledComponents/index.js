@@ -10,6 +10,9 @@ import { ErrorStyles } from "./ErrorStyles";
 import { ImagesStyles } from "./ImagesStyles";
 import { StarsStyles } from "./StarsStyles";
 import { AddToCartStyles } from "./AddToCartStyles";
+import { CartStyles } from "./CartStyles";
+import { CartItemStyles } from "./CartItemStyles";
+import { CartPayStyles } from "./CartPayStyles";
 
 export {
   HomeStyles,
@@ -24,4 +27,7 @@ export {
   ImagesStyles,
   StarsStyles,
   AddToCartStyles,
+  CartStyles,
+  CartItemStyles,
+  CartPayStyles,
 };

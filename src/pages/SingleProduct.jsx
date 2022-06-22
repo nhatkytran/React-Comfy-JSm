@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import loader from "../imgs/loader.svg";
 import upperFirstLetter from "../utils/upperFirstLetter";
@@ -86,7 +86,9 @@ function SingleProduct() {
       <div className="app">
         <div className="single-product">
           <div className="btn-single-product-container">
-            <button className="btn btn-single-product">ALL PRODUCTS</button>
+            <Link to="/products" className="btn btn-single-product">
+              ALL PRODUCTS
+            </Link>
           </div>
           <div className="single-product-main">
             <Images />
@@ -97,9 +99,10 @@ function SingleProduct() {
               <p>{description}</p>
               <div>
                 <span style={{ fontWeight: "bold" }}>Available:</span>
-                <span>
-                  {stock > 0 ? `In Stock (${stock})` : "Out Of Stock"}
-                </span>
+                <span>{stock > 0 ? `In Stock` : "Out Of Stock"}</span>
+                {stock > 0 && (
+                  <span style={{ fontWeight: "bold" }}>{` (${stock})`}</span>
+                )}
               </div>
               <div>
                 <span style={{ fontWeight: "bold" }}>SKU:</span>
