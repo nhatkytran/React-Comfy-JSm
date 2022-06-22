@@ -64,8 +64,9 @@ function FilterProvider({ children }) {
   }, [dispatch, products]);
 
   useEffect(() => {
+    dispatch(FILTER_ACTIONS.filter(state.filters));
     dispatch(FILTER_ACTIONS.setSortUpdate(state.sort));
-  }, [products, state.sort]);
+  }, [products, state.sort, state.filters]);
 
   return (
     <FilterContext.Provider value={value}>{children}</FilterContext.Provider>

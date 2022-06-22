@@ -4,6 +4,7 @@ const FILTER_TYPES = {
   sort: "SET_SORT",
   sortUpdate: "SORT_UPDATE",
   filterConditions: "SET_FILTER_CONDITIONS",
+  filter: "FILTER",
 };
 
 const FILTER_ACTIONS = {
@@ -34,6 +35,12 @@ const FILTER_ACTIONS = {
   setFilterConditions(payload) {
     return {
       type: FILTER_TYPES.filterConditions,
+      payload,
+    };
+  },
+  filter(payload) {
+    return {
+      type: FILTER_TYPES.filter,
       payload,
     };
   },
@@ -101,6 +108,7 @@ function filterReducer(state, action) {
       };
     case FILTER_TYPES.filterConditions:
       const { name, value, clear } = action.payload;
+
       if (!clear) {
         return {
           ...state,
@@ -123,6 +131,20 @@ function filterReducer(state, action) {
           price: state.filters.max,
           shipping: false,
         },
+      };
+    case FILTER_TYPES.filter:
+      const { text } = action.payload;
+      let tempProducts = [...state.nonFilteredProducts];
+
+      if (text) {
+        tempProducts = tempProducts.filter((product) =>
+          product.name.includes(text)
+        );
+      }
+
+      return {
+        ...state,
+        filteredProducts: tempProducts,
       };
     default:
       throw new Error("[Filter]: Invalid action!");
