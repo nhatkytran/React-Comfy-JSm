@@ -133,14 +133,29 @@ function filterReducer(state, action) {
         },
       };
     case FILTER_TYPES.filter:
-      const { text } = action.payload;
+      const { text, category, company, color, price, shipping } =
+        action.payload;
       let tempProducts = [...state.nonFilteredProducts];
 
-      if (text) {
+      if (text)
         tempProducts = tempProducts.filter((product) =>
           product.name.includes(text)
         );
-      }
+      if (category !== "all")
+        tempProducts = tempProducts.filter(
+          (product) => product.category === category
+        );
+      if (company !== "all")
+        tempProducts = tempProducts.filter(
+          (product) => product.company === company
+        );
+      if (color !== "all")
+        tempProducts = tempProducts.filter((product) =>
+          product.colors.includes(color)
+        );
+      if (shipping)
+        tempProducts = tempProducts.filter((product) => product.shipping);
+      tempProducts = tempProducts.filter((product) => product.price <= price);
 
       return {
         ...state,
