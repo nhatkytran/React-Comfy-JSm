@@ -9,6 +9,23 @@ export const CartStyles = styled.div`
     border: none;
   }
 
+  .empty-cart {
+    width: 100%;
+    padding: 40px 20px;
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      transition: all linear 0.1s;
+
+      &:hover {
+        background-color: var(--main-text-light);
+      }
+    }
+  }
+
   .cart {
     width: 100%;
     padding: 40px 20px;

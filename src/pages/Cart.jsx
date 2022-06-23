@@ -5,9 +5,11 @@ import { CartStyles } from "./styledComponents";
 import { PageHero } from "../components";
 import CartItem from "./CartComponent/CartItem";
 import CartPay from "./CartComponent/CartPay";
+import { useCartContext } from "../context";
 
 function Cart() {
   const [height, setHeight] = useState("660px");
+  const { cart } = useCartContext();
 
   useEffect(() => {
     const navbarRect = document
@@ -19,6 +21,22 @@ function Cart() {
 
     setHeight(`calc(100vh - ${navbarRect.height}px - ${footerRect.height}px)`);
   }, []);
+
+  if (!cart.length)
+    return (
+      <CartStyles style={{ width: "100%", minHeight: `${height}` }}>
+        <PageHero title="cart" />
+        <div className="app">
+          <div className="empty-cart">
+            <h3>Cart is empty</h3>
+            <p>Shop now</p>
+            <Link to="/products" className="btn">
+              All Products
+            </Link>
+          </div>
+        </div>
+      </CartStyles>
+    );
 
   return (
     <CartStyles style={{ width: "100%", minHeight: `${height}` }}>
@@ -34,9 +52,9 @@ function Cart() {
           </div>
           <hr className="hide" />
           <div className="items">
-            <CartItem />
-            <CartItem />
-            <CartItem />
+            {cart.map((product) => (
+              <CartItem key={product.idWithColor} {...product} />
+            ))}
           </div>
           <hr />
           <div className="handle">

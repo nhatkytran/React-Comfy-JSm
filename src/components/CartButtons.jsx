@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { BsCartCheckFill } from "react-icons/bs";
 import { BiLogIn } from "react-icons/bi";
 
-import { useStructureContext } from "../context/StructureContext";
+import { useStructureContext, useCartContext } from "../context";
+
 import {
   CartButtonsStyles,
   CartButtonsSidebarStyles,
@@ -11,6 +12,7 @@ import {
 
 function CartButtons({ kindof }) {
   const { closeSidebar } = useStructureContext();
+  const { cart } = useCartContext();
 
   const cartButtonsContent = (
     <React.Fragment>
@@ -21,9 +23,11 @@ function CartButtons({ kindof }) {
       >
         <span>
           Cart <BsCartCheckFill />
-          <span className="quantity center-flex-display">
-            <span>10</span>
-          </span>
+          {cart.length > 0 && (
+            <span className="quantity center-flex-display">
+              <span>{cart.length}</span>
+            </span>
+          )}
         </span>
       </Link>
       <Link

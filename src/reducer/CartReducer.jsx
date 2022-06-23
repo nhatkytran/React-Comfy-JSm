@@ -1,6 +1,8 @@
 const CART_TYPES = {
   addProduct: "ADD_PRODUCT",
   superviseCart: "SUPERVISE_CART",
+  totalItemsAndAmount: "TOTAL_ITEMS_AND_AMOUNT",
+  changeQuantity: "CHANGE_QUANTITY",
 };
 
 const CART_ACTIONS = {
@@ -16,6 +18,18 @@ const CART_ACTIONS = {
       payload,
     };
   },
+  setTotalItemsAndAmount(payload) {
+    return {
+      type: CART_TYPES.totalItemsAndAmount,
+      payload,
+    };
+  },
+  changeQuantity(payload) {
+    return {
+      type: CART_TYPES.changeQuantity,
+      payload,
+    };
+  },
 };
 
 function cartReducer(state, action) {
@@ -26,15 +40,10 @@ function cartReducer(state, action) {
 
       let tempCart;
       let { quantity } = action.payload;
+      let productSameID = state.eachProductTotal[product.id];
       let tempProduct = state.cart.find(
         (product) => product.idWithColor === idWithColor
       );
-
-      let productSameID = Object.entries(state.eachProductTotal)
-        .find((entry) => {
-          return entry[0] === product.id;
-        })
-        ?.at(1);
 
       if (productSameID) {
         if (quantity > product.stock - productSameID)
@@ -88,6 +97,51 @@ function cartReducer(state, action) {
       return {
         ...state,
         eachProductTotal,
+      };
+    case CART_TYPES.totalItemsAndAmount:
+      const { totalItems, totalAmount } = action.payload.reduce(
+        (acc, cur) => {
+          acc.totalItems += cur.quantity;
+          acc.totalAmount += cur.price * cur.quantity;
+
+          return acc;
+        },
+        {
+          totalItems: 0,
+          totalAmount: 0,
+        }
+      );
+
+      return {
+        ...state,
+        totalItems,
+        totalAmount,
+      };
+    case CART_TYPES.changeQuantity:
+      console.log(123);
+      const { id, idWithColor: idColor, max, side } = action.payload;
+      const sameProductID = state.eachProductTotal[id];
+      let newCart;
+
+      if (side === "up") {
+        newCart = state.cart.map((product) => {
+          if (product.idWithColor !== idColor) return product;
+
+          let newQuantity = product.quantity + 1;
+
+          if (newQuantity + sameProductID > max)
+            newQuantity = max - sameProductID;
+
+          return {
+            ...product,
+            quantity: newQuantity,
+          };
+        });
+      }
+
+      return {
+        ...state,
+        cart: newCart,
       };
     default:
       throw new Error("[Cart]: Invalid action!");

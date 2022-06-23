@@ -34,8 +34,6 @@ export const CartItemStyles = styled.div`
       background-position: center bottom;
       background-size: cover;
       border-radius: 2px;
-
-      background-color: red;
     }
 
     .content {
@@ -55,7 +53,6 @@ export const CartItemStyles = styled.div`
         height: 11px;
         border-radius: 2px;
         margin-left: 5px;
-        background-color: red;
 
         position: relative;
         top: 1px;
