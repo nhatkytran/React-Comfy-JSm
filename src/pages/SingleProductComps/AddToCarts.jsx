@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { BsArrowUpShort } from "react-icons/bs";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
-import { useProductsContext } from "../../context";
+import { useProductsContext, useCartContext } from "../../context";
 import { AddToCartStyles } from "../styledComponents";
 
 function AddToCarts() {
-  const {
-    singleProduct: { stock, colors },
-  } = useProductsContext();
+  const { singleProduct } = useProductsContext();
+  const { addToCart } = useCartContext();
+
+  const { stock, colors } = singleProduct;
+
   const [mainColor, setMainColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -63,7 +65,11 @@ function AddToCarts() {
           <AiOutlinePlus />
         </span>
       </div>
-      <Link to="/cart" className="btn add-to-cart-btn">
+      <Link
+        to="/cart"
+        className="btn add-to-cart-btn"
+        onClick={addToCart.bind(null, singleProduct, mainColor, quantity)}
+      >
         ADD TO CART
       </Link>
     </AddToCartStyles>

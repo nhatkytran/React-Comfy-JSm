@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { CartStyles } from "./styledComponents";
 import { PageHero } from "../components";
 import CartItem from "./CartComponent/CartItem";
@@ -38,7 +40,9 @@ function Cart() {
           </div>
           <hr />
           <div className="handle">
-            <button className="btn continue">Continue Shopping</button>
+            <Link to="/products" className="btn continue">
+              Continue Shopping
+            </Link>
             <button className="btn clear">Clear Shopping Cart</button>
           </div>
         </div>

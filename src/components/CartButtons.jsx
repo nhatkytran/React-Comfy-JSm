@@ -19,7 +19,12 @@ function CartButtons({ kindof }) {
         className="cart-buttons center-flex-display"
         onClick={closeSidebar}
       >
-        Cart <BsCartCheckFill />
+        <span>
+          Cart <BsCartCheckFill />
+          <span className="quantity center-flex-display">
+            <span>10</span>
+          </span>
+        </span>
       </Link>
       <Link
         to="/login"

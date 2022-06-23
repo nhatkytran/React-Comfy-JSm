@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { StructureProvider } from "./context";
 import { ProductsProvider } from "./context";
 import { FilterProvider } from "./context";
+import { CartProvider } from "./context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <StructureProvider>
         <ProductsProvider>
           <FilterProvider>
-            <App />
+            <CartProvider>
+              <App />
+            </CartProvider>
           </FilterProvider>
         </ProductsProvider>
       </StructureProvider>

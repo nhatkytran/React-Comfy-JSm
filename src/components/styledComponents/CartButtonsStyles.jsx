@@ -26,9 +26,47 @@ export const CartButtonsStyles = styled.div.attrs({
       background-color: var(--main-bg-medium);
     }
 
-    svg {
-      font-size: 24px;
-      fill: var(--main-text);
+    span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
+  .cart-buttons {
+    span {
+      position: relative;
+
+      svg {
+        font-size: 24px;
+        fill: var(--main-text);
+      }
+
+      .quantity {
+        width: 20px;
+        height: 20px;
+        background-color: var(--main-text-light);
+        border-radius: 50%;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+        position: absolute;
+        top: -8px;
+        right: -10px;
+
+        span {
+          font-size: 12px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .cart-buttons-login {
+    span {
+      svg {
+        font-size: 24px;
+        fill: var(--main-text);
+      }
     }
   }
 `;
