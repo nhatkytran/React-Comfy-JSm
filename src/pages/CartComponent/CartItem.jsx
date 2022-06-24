@@ -17,7 +17,7 @@ function CartItem({
   quantity,
   max,
 }) {
-  const { changeQuantity } = useCartContext();
+  const { changeQuantity, deleteProduct } = useCartContext();
   const subtotal = price * quantity;
 
   return (
@@ -50,7 +50,10 @@ function CartItem({
         <span>{priceFormatter(subtotal)}</span>
       </div>
       <div className="trash-bin center-flex-display">
-        <span className="trash-bin-icon center-flex-display">
+        <span
+          className="trash-bin-icon center-flex-display"
+          onClick={deleteProduct.bind(null, idWithColor)}
+        >
           <FaTrash />
         </span>
       </div>

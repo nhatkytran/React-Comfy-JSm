@@ -8,8 +8,7 @@ const initState = {
   cart: [],
   eachProductTotal: {},
   totalItems: 0,
-  totalAmount: 0,
-  shipping_fee: 534,
+  shippingFee: 0,
 };
 
 function useCartContext() {
@@ -27,15 +26,26 @@ function CartProvider({ children }) {
     dispatch(CART_ACTIONS.changeQuantity({ id, idWithColor, max, side }));
   }
 
+  function deleteProduct(idWithColor) {
+    dispatch(CART_ACTIONS.deleteProduct(idWithColor));
+  }
+
+  function clearCart() {
+    dispatch(CART_ACTIONS.clearCart());
+  }
+
   const value = {
     ...state,
     addToCart,
     changeQuantity,
+    deleteProduct,
+    clearCart,
   };
 
   useEffect(() => {
     dispatch(CART_ACTIONS.superviseCart(state.cart));
     dispatch(CART_ACTIONS.setTotalItemsAndAmount(state.cart));
+    dispatch(CART_ACTIONS.shippingFee(state.cart));
   }, [dispatch, state.cart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

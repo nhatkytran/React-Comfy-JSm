@@ -3,6 +3,9 @@ const CART_TYPES = {
   superviseCart: "SUPERVISE_CART",
   totalItemsAndAmount: "TOTAL_ITEMS_AND_AMOUNT",
   changeQuantity: "CHANGE_QUANTITY",
+  deleteProduct: "DELETE_PRODUCT",
+  clearCart: "CLEAR_CART",
+  shippingFee: "SHIPPING_FEE",
 };
 
 const CART_ACTIONS = {
@@ -27,6 +30,23 @@ const CART_ACTIONS = {
   changeQuantity(payload) {
     return {
       type: CART_TYPES.changeQuantity,
+      payload,
+    };
+  },
+  deleteProduct(payload) {
+    return {
+      type: CART_TYPES.deleteProduct,
+      payload,
+    };
+  },
+  clearCart() {
+    return {
+      type: CART_TYPES.clearCart,
+    };
+  },
+  shippingFee(payload) {
+    return {
+      type: CART_TYPES.shippingFee,
       payload,
     };
   },
@@ -158,6 +178,41 @@ function cartReducer(state, action) {
       return {
         ...state,
         cart: newCart,
+      };
+    case CART_TYPES.deleteProduct:
+      return {
+        ...state,
+        cart: state.cart.filter(
+          (product) => product.idWithColor !== action.payload
+        ),
+      };
+    case CART_TYPES.clearCart:
+      return {
+        ...state,
+        cart: [],
+      };
+    case CART_TYPES.shippingFee:
+      // Price <= 150000: Free 500
+      // Price > 150000: Free 1000
+      const idProducts = [];
+      const shippingFee = action.payload.reduce((acc, cur) => {
+        if (!idProducts.includes(cur.id)) {
+          let fee;
+
+          if (cur.price > 150000) fee = 1000;
+          else fee = 500;
+
+          idProducts.push(cur.id);
+
+          return acc + fee;
+        }
+
+        return acc;
+      }, 0);
+
+      return {
+        ...state,
+        shippingFee,
       };
     default:
       throw new Error("[Cart]: Invalid action!");

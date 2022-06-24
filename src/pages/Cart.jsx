@@ -9,7 +9,7 @@ import { useCartContext } from "../context";
 
 function Cart() {
   const [height, setHeight] = useState("660px");
-  const { cart } = useCartContext();
+  const { cart, clearCart } = useCartContext();
 
   useEffect(() => {
     const navbarRect = document
@@ -61,7 +61,9 @@ function Cart() {
             <Link to="/products" className="btn continue">
               Continue Shopping
             </Link>
-            <button className="btn clear">Clear Shopping Cart</button>
+            <button className="btn clear" onClick={clearCart}>
+              Clear Shopping Cart
+            </button>
           </div>
         </div>
         <CartPay />
