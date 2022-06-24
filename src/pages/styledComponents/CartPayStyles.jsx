@@ -43,7 +43,8 @@ export const CartPayStyles = styled.div`
       }
     }
 
-    button {
+    button,
+    a {
       width: 320px;
       margin: 10px 0 40px;
       transition: all linear 0.1s;

@@ -5,13 +5,14 @@ import { FaTimes } from "react-icons/fa";
 import logo from "../imgs/logo-black-comfy.svg";
 import { links } from "../utils/constants";
 
-import { useStructureContext } from "../context";
+import { useStructureContext, useUserContext } from "../context";
 import { SidebarStyles } from "./styledComponents";
 import { ModalOverlay } from "./utils";
 import CartButtons from "./CartButtons";
 
 function Sidebar() {
   const { isSidebarOpen, closeSidebar } = useStructureContext();
+  const { appUser } = useUserContext();
 
   return (
     <React.Fragment>
@@ -35,6 +36,13 @@ function Sidebar() {
               </li>
             );
           })}
+          {appUser && (
+            <li>
+              <Link to="/checkout" onClick={closeSidebar}>
+                CHECKOUT
+              </Link>
+            </li>
+          )}
         </ul>
         <CartButtons kindof="sidebar" />
       </SidebarStyles>

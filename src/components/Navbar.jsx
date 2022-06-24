@@ -4,12 +4,13 @@ import { VscThreeBars } from "react-icons/vsc";
 import logo from "../imgs/logo-black-comfy.svg";
 import { links } from "../utils/constants";
 
-import { useStructureContext } from "../context";
+import { useStructureContext, useUserContext } from "../context";
 import { NavbarStyles } from "./styledComponents";
 import CartButtons from "./CartButtons";
 
 function Navbar() {
   const { openSidebar } = useStructureContext();
+  const { appUser } = useUserContext();
 
   return (
     <NavbarStyles>
@@ -26,9 +27,11 @@ function Navbar() {
                 </li>
               );
             })}
-            <li>
-              <Link to="/checkout">CHECKOUT</Link>
-            </li>
+            {appUser && (
+              <li>
+                <Link to="/checkout">CHECKOUT</Link>
+              </li>
+            )}
           </ul>
           <CartButtons kindof="navbar" />
           <div className="navbar-icon responsive-display" onClick={openSidebar}>

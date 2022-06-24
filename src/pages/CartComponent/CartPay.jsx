@@ -1,9 +1,11 @@
-import { useCartContext } from "../../context";
+import { Link } from "react-router-dom";
+import { useCartContext, useUserContext } from "../../context";
 import priceFormatter from "../../utils/priceFormatter";
 import { CartPayStyles } from "../styledComponents";
 
 function CartPay() {
   const { totalAmount, shippingFee } = useCartContext();
+  const { appUser, loginWithRedirect } = useUserContext();
 
   return (
     <CartPayStyles>
@@ -25,7 +27,16 @@ function CartPay() {
             </span>
           </div>
         </div>
-        <button className="btn">PROCEED TO CHECKOUT</button>
+        {appUser && (
+          <Link to="/checkout" className="btn">
+            PROCEED TO CHECKOUT
+          </Link>
+        )}
+        {!appUser && (
+          <button className="btn" onClick={loginWithRedirect}>
+            LOGIN
+          </button>
+        )}
       </div>
     </CartPayStyles>
   );

@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsCartCheckFill } from "react-icons/bs";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 
-import { useStructureContext, useCartContext } from "../context";
+import {
+  useStructureContext,
+  useCartContext,
+  useUserContext,
+} from "../context";
 
 import {
   CartButtonsStyles,
@@ -13,6 +17,19 @@ import {
 function CartButtons({ kindof }) {
   const { closeSidebar } = useStructureContext();
   const { cart, totalItems } = useCartContext();
+  const { appUser, loginWithRedirect, logout } = useUserContext();
+
+  function handleLogin() {
+    closeSidebar();
+    loginWithRedirect();
+  }
+
+  function handleLogout() {
+    closeSidebar();
+    logout({
+      returnTo: window.location.origin,
+    });
+  }
 
   const cartButtonsContent = (
     <React.Fragment>
@@ -30,13 +47,22 @@ function CartButtons({ kindof }) {
           )}
         </span>
       </Link>
-      <Link
-        to="/login"
-        className="cart-buttons-login center-flex-display"
-        onClick={closeSidebar}
-      >
-        Login <BiLogIn />
-      </Link>
+      {!appUser && (
+        <button
+          className="cart-buttons-login center-flex-display"
+          onClick={handleLogin}
+        >
+          Login <BiLogIn />
+        </button>
+      )}
+      {appUser && (
+        <button
+          className="cart-buttons-logout center-flex-display"
+          onClick={handleLogout}
+        >
+          Logout <BiLogOut />
+        </button>
+      )}
     </React.Fragment>
   );
 

@@ -2,6 +2,7 @@ import StructureProvider, { useStructureContext } from "./StructureContext";
 import ProductsProvider, { useProductsContext } from "./ProductsContext";
 import FilterProvider, { useFilterContext } from "./FilterContext";
 import CartProvider, { useCartContext } from "./CartContext";
+import UserProvider, { useUserContext } from "./UserContext";
 
 export {
   StructureProvider,
@@ -12,4 +13,6 @@ export {
   useFilterContext,
   CartProvider,
   useCartContext,
+  UserProvider,
+  useUserContext,
 };

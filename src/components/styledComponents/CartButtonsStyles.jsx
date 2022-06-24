@@ -15,8 +15,14 @@ export const CartButtonsStyles = styled.div.attrs({
   }
 
   .cart-buttons,
-  .cart-buttons-login {
+  .cart-buttons-login,
+  .cart-buttons-logout {
+    outline: none;
+    border: none;
     gap: 5px;
+    width: 100%;
+    background-color: transparent;
+    font-size: 16px;
     padding: 10px;
     border-radius: 2px;
     transition: all linear 0.1s;
@@ -61,12 +67,11 @@ export const CartButtonsStyles = styled.div.attrs({
     }
   }
 
-  .cart-buttons-login {
-    span {
-      svg {
-        font-size: 24px;
-        fill: var(--main-text);
-      }
+  .cart-buttons-login,
+  .cart-buttons-logout {
+    svg {
+      font-size: 24px;
+      fill: var(--main-text);
     }
   }
 `;
@@ -75,7 +80,8 @@ export const CartButtonsSidebarStyles = styled(CartButtonsStyles).attrs({
   className: "block-display",
 })`
   .cart-buttons,
-  .cart-buttons-login {
+  .cart-buttons-login,
+  .cart-buttons-logout {
     justify-content: start;
 
     padding-left: 20px;

@@ -4,26 +4,42 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
 
-import { StructureProvider } from "./context";
-import { ProductsProvider } from "./context";
-import { FilterProvider } from "./context";
-import { CartProvider } from "./context";
+import {
+  StructureProvider,
+  ProductsProvider,
+  FilterProvider,
+  CartProvider,
+  UserProvider,
+} from "./context";
+import { AuthWrapper } from "./pages";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <StructureProvider>
-        <ProductsProvider>
-          <FilterProvider>
-            <CartProvider>
-              <App />
-            </CartProvider>
-          </FilterProvider>
-        </ProductsProvider>
-      </StructureProvider>
-    </BrowserRouter>
+    <Auth0Provider
+      domain="dev-65m8tll3.us.auth0.com"
+      clientId="dLnlxHWE7ny5rgWZhyZnezHNqntqNGhN"
+      redirectUri={window.location.origin}
+      cacheLocation="localstorage"
+    >
+      <AuthWrapper>
+        <BrowserRouter>
+          <UserProvider>
+            <StructureProvider>
+              <ProductsProvider>
+                <FilterProvider>
+                  <CartProvider>
+                    <App />
+                  </CartProvider>
+                </FilterProvider>
+              </ProductsProvider>
+            </StructureProvider>
+          </UserProvider>
+        </BrowserRouter>
+      </AuthWrapper>
+    </Auth0Provider>
   </React.StrictMode>
 );
 
