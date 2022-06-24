@@ -12,7 +12,7 @@ import {
 
 function CartButtons({ kindof }) {
   const { closeSidebar } = useStructureContext();
-  const { cart } = useCartContext();
+  const { cart, totalItems } = useCartContext();
 
   const cartButtonsContent = (
     <React.Fragment>
@@ -25,7 +25,7 @@ function CartButtons({ kindof }) {
           Cart <BsCartCheckFill />
           {cart.length > 0 && (
             <span className="quantity center-flex-display">
-              <span>{cart.length}</span>
+              <span>{totalItems}</span>
             </span>
           )}
         </span>

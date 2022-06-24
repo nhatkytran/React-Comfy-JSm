@@ -118,19 +118,35 @@ function cartReducer(state, action) {
         totalAmount,
       };
     case CART_TYPES.changeQuantity:
-      console.log(123);
       const { id, idWithColor: idColor, max, side } = action.payload;
       const sameProductID = state.eachProductTotal[id];
+
       let newCart;
 
       if (side === "up") {
         newCart = state.cart.map((product) => {
           if (product.idWithColor !== idColor) return product;
 
-          let newQuantity = product.quantity + 1;
+          // sameProductID includes product
+          // product plus 1 means sameProductID + 1
+          let newQuantity =
+            sameProductID + 1 > max ? product.quantity : product.quantity + 1;
 
-          if (newQuantity + sameProductID > max)
-            newQuantity = max - sameProductID;
+          return {
+            ...product,
+            quantity: newQuantity,
+          };
+        });
+      }
+
+      if (side === "down") {
+        newCart = state.cart.map((product) => {
+          if (product.idWithColor !== idColor) return product;
+
+          // sameProductID includes product
+          // product minus 1 means sameProductID - 1
+          let newQuantity =
+            product.quantity - 1 <= 0 ? product.quantity : product.quantity - 1;
 
           return {
             ...product,
