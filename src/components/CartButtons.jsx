@@ -16,7 +16,7 @@ import {
 
 function CartButtons({ kindof }) {
   const { closeSidebar } = useStructureContext();
-  const { cart, totalItems } = useCartContext();
+  const { cart, totalItems, clearCart } = useCartContext();
   const { appUser, loginWithRedirect, logout } = useUserContext();
 
   function handleLogin() {
@@ -26,6 +26,7 @@ function CartButtons({ kindof }) {
 
   function handleLogout() {
     closeSidebar();
+    clearCart();
     logout({
       returnTo: window.location.origin,
     });

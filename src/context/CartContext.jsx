@@ -8,6 +8,7 @@ const initState = {
   cart: [],
   eachProductTotal: {},
   totalItems: 0,
+  totalAmount: 0,
   shippingFee: 0,
 };
 
